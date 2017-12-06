@@ -1,0 +1,18 @@
+Dies ist eine Kurzanleitung für PaperRacing.<br>
+<br>
+Die Kurzanleitung ist noch nicht fertig.<br>
+<br>
+PaperRacing ist ein Spiel, das auch als Racetrack oder Vektorrennen bekannt ist.<br>
+Sie können sich bei de.wikipedia.org/wiki/Racetrack einen Eindruck verschaffen, wie das Spiel funktioniert.<br>
+<br>
+Hier sehen Sie eine normale Situation:<br>
+<img src="help1"><br>
+Die aktuelle Position wird zu dem Punkt verlängert, der sich aus dem letzten Bewegungsvektor ergeben würde (der grüne Kreis in der Mitte aller dargestellten Kreise, der sich ergibt, wenn die Linie vom gefüllten roten Kreis über das rote Auto verlängert wird).<br>
+Die neue Position kann jeder benachbarte Punkt dieses Punktes einschließlich des Punktes selbst sein.<br>
+Wenn die neue Position außerhalb der Strecke liegt (rot markiert), wird Ihre aktuelle Position beibehalten und Ihre Geschwindigkeit wird auf Null gesetzt.<br>
+<br>
+Sehen Sie, was noch möglich ist:<br>
+<img src="help2"><br>
+Sie können die Strecke verlassen (abkürzen), wenn zumindest der Zielpunkt auf der Strecke liegt, selbst wenn die direkte Verbindung außerhalb der Strecke liegt.<br>
+Der grüne Kreis in der Mitte der untersten Linie ist ein zulässiger Zielpunkt.
+

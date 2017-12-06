@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">PaperRacing</string>
+    <string name="main_activity_title">PaperRacing</string>
+    <string name="settings_activity_title">PaperRacing - Einstellungen</string>
+    <string name="action_quickrace">Schnelles Rennen</string>
+    <string name="action_settings">Einstellungen</string>
+    <string name="action_help">Hilfe</string>
+    <string name="action_about">Über</string>
+    <string name="about_title">Über</string>
+    <string name="help_title">Hilfe</string>
+    <string name="firstrun_1">Willkommen zu</string>
+    <string name="firstrun_2">PaperRacing</string>
+    <string name="firstrun_3">Wählen Sie \'Schnelles Rennen\' vom Menü</string>
+    <string name="finished_1">Spiel beendet!</string>
+    <string name="finished_2">hat gewonnen!</string>
+    <string name="crashed">crashed</string>
+    <string name="name_player">Spieler</string>
+    <string name="name_computer">Computer</string>
+    <string name="quickrace_title">Schnelles Rennen</string>
+    <string name="quickrace_player_on">spielt</string>
+    <string name="quickrace_player_type_computer">Computer</string>
+    <string name="quickrace_player_type_human">Mensch</string>
+    <string name="quickrace_player_name">Spielername</string>
+</resources>

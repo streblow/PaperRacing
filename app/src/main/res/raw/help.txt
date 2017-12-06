@@ -1,0 +1,18 @@
+This is a short help for the app PaperRacing.<br>
+<br>
+The short help is not complete yet.<br>
+<br>
+PaperRacing is a game also known as racetrack or vectorrace.<br>
+You can go to en.wikipedia.org/wiki/Racetrack_(game) to get an idea of how it works.<br>
+<br>
+Here you see a normal move situation:<br>
+<img src="help1"><br>
+The current position is extended to the point the last moving vector would point to (the green circle in the middle of all drawn circles, obtained by extending the line from red filled circle, the last position, along the red car).<br>
+The new position can be any of the neighboring points including the central point.<br>
+If the new position is out of the track (marked red) your current position will be kept and your speed will be set to zero.<br>
+<br>
+Lets see what is possible too:<br>
+<img src="help2"><br>
+You can leave the track (shorten) if at least the target point is on the track, even if the direct connection leaves it.<br>
+The green circle in the middle of the bottom line is a legal target point.
+
