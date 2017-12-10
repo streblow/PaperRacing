@@ -4,9 +4,6 @@ import android.app.Activity;
 import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.graphics.Color;
-import android.graphics.Typeface;
-import android.graphics.drawable.ColorDrawable;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -24,20 +21,22 @@ import java.util.List;
  * Created by streblow on 24.11.2017.
  */
 
-public class QuickraceDialogFragment extends DialogFragment {
+public class NewRaceDialogFragment extends DialogFragment {
 
     public interface OnDialogFragmentDismissedListener {
         void onDialogFragmentDismissedListener(int[] types, String[] names);
     }
 
+    public String title;
     public OnDialogFragmentDismissedListener listener;
     private String arr_type[];
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.dialogfragment_quickrace, container, false);
-        getDialog().setTitle(R.string.quickrace_title);
+        View view = inflater.inflate(R.layout.dialogfragment_newrace, container, false);
         setRetainInstance(true);
+        title = getArguments().getString("title", "");
+        getDialog().setTitle(title);
         arr_type = new String[2];
         arr_type[0] = getString(R.string.quickrace_player_type_computer);
         arr_type[1] = getString(R.string.quickrace_player_type_human);

@@ -2,14 +2,14 @@ package de.streblow.paperracing;
 
 import android.app.FragmentManager;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.os.Handler;
-import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+
+import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -17,7 +17,7 @@ public class MainActivity extends AppCompatActivity {
     private MainView mainView = null;
     private Handler waitHandler = null;
 
-    private int result;
+    private ArrayList<RaceStatsEntry> raceStats;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
         mainView = (MainView)findViewById(R.id.cvMainView);
         mainView.buttonHidden = true;
         waitHandler = new Handler();
+        raceStats = new ArrayList<RaceStatsEntry>();
     }
 
     @Override
@@ -47,17 +48,25 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public boolean onOptionsItemSelected(MenuItem item)
     {
+        FragmentManager fm = null;
+        Bundle title = null;
         switch (item.getItemId())
         {
             case R.id.action_quickrace:
-                FragmentManager fm = getFragmentManager();
-                QuickraceDialogFragment quickrace = new QuickraceDialogFragment();
-                quickrace.listener = new QuickraceDialogFragment.OnDialogFragmentDismissedListener() {
+                fm = getFragmentManager();
+                NewRaceDialogFragment quickrace = new NewRaceDialogFragment();
+                title = new Bundle();
+                title.putString("title", getString(R.string.quickrace_title));
+                quickrace.setArguments(title);
+                quickrace.listener = new NewRaceDialogFragment.OnDialogFragmentDismissedListener() {
                     @Override
                     public void onDialogFragmentDismissedListener(int[] types, String[] names) {
                         if (types != null && names != null)
                             if (types.length > 0 && names.length > 0) {
+                                setTitle(getString(R.string.main_activity_title) + " - " +
+                                getString(R.string.quickrace_title));
                                 mainView.init(MainActivity.this, types, names);
+                                mainView.game.type = Game.QUICKRACE;
                                 findViewById(R.id.imageButton1).setVisibility(View.VISIBLE);
                                 findViewById(R.id.imageButton2).setVisibility(View.VISIBLE);
                                 findViewById(R.id.imageButton3).setVisibility(View.VISIBLE);
@@ -79,7 +88,47 @@ public class MainActivity extends AppCompatActivity {
                             }
                     }
                 };
-                quickrace.show((FragmentManager)fm, "Quickrace");
+                quickrace.show(fm, "Quickrace");
+                return true;
+            case R.id.action_race:
+                fm = getFragmentManager();
+                NewRaceDialogFragment race = new NewRaceDialogFragment();
+                title = new Bundle();
+                title.putString("title", getString(R.string.race_title));
+                race.setArguments(title);
+                race.listener = new NewRaceDialogFragment.OnDialogFragmentDismissedListener() {
+                    @Override
+                    public void onDialogFragmentDismissedListener(int[] types, String[] names) {
+                        if (types != null && names != null)
+                            if (types.length > 0 && names.length > 0) {
+                                setTitle(getString(R.string.main_activity_title) + " - " +
+                                        getString(R.string.race_title));
+                                mainView.init(MainActivity.this, types, names);
+                                mainView.game.type = Game.RACE;
+                                findViewById(R.id.imageButton1).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton2).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton3).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton4).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton5).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton6).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton7).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton8).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButton9).setVisibility(View.VISIBLE);
+                                findViewById(R.id.imageButtonUndo).setVisibility(View.INVISIBLE);
+                                mainView.firstRun = false;
+                                mainView.buttonHidden = false;
+                                waitHandler.postDelayed(new Runnable() {
+                                    @Override
+                                    public void run() {
+                                        startGame();
+                                    }
+                                }, 0);
+                            }
+                    }
+                };
+                race.show(fm, "Race");
+                return true;
+            case R.id.action_season:
                 return true;
             case R.id.action_settings:
                 return true;

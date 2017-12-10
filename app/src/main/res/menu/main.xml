@@ -6,18 +6,28 @@
         android:title="@string/action_quickrace"
         android:icon="@drawable/newgame"/>
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/action_race"
         android:orderInCategory="110"
+        android:title="@string/action_race"
+        android:icon="@drawable/newgame"/>
+    <item
+        android:id="@+id/action_season"
+        android:orderInCategory="120"
+        android:title="@string/action_season"
+        android:icon="@drawable/newgame"/>
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="130"
         android:title="@string/action_settings" 
         android:icon="@drawable/settings"/>
     <item 
         android:id="@+id/action_help" 
-        android:orderInCategory="120"
+        android:orderInCategory="140"
         android:title="@string/action_help" 
         android:icon="@drawable/help"/>
     
     <item android:id="@+id/action_about" 
-        android:orderInCategory="130"
+        android:orderInCategory="150"
         android:title="@string/action_about" 
         android:icon="@drawable/about"/>
     

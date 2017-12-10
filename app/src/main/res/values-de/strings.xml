@@ -5,6 +5,8 @@
     <string name="main_activity_title">PaperRacing</string>
     <string name="settings_activity_title">PaperRacing - Einstellungen</string>
     <string name="action_quickrace">Schnelles Rennen</string>
+    <string name="action_race">Rennen</string>
+    <string name="action_season">Meisterschaft</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_help">Hilfe</string>
     <string name="action_about">Über</string>
@@ -23,4 +25,6 @@
     <string name="quickrace_player_type_computer">Computer</string>
     <string name="quickrace_player_type_human">Mensch</string>
     <string name="quickrace_player_name">Spielername</string>
+    <string name="race_title">Rennen</string>
+    <string name="season_title">Meisterschaft</string>
 </resources>

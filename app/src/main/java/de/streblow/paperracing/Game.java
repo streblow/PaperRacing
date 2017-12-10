@@ -8,6 +8,7 @@ import android.graphics.Color;
 
 public class Game {
 
+    public int type;
     public Circuit circuit;
     public Player [] player;
     public int playercount;
@@ -15,6 +16,10 @@ public class Game {
     public int winner = 0;
     public boolean finish = false;
     public boolean gamestarted = false;
+
+    public final static int QUICKRACE = 0;
+    public final static int RACE = 1;
+    public final static int SEASON = 2;
 
     public Game() {
         circuit = null;
