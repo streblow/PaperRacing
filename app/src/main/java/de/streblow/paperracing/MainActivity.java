@@ -49,15 +49,15 @@ public class MainActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item)
     {
         FragmentManager fm = null;
-        Bundle title = null;
+        Bundle arguments = null;
         switch (item.getItemId())
         {
             case R.id.action_quickrace:
                 fm = getFragmentManager();
                 NewRaceDialogFragment quickrace = new NewRaceDialogFragment();
-                title = new Bundle();
-                title.putString("title", getString(R.string.quickrace_title));
-                quickrace.setArguments(title);
+                arguments = new Bundle();
+                arguments.putString("title", getString(R.string.quickrace_title));
+                quickrace.setArguments(arguments);
                 quickrace.listener = new NewRaceDialogFragment.OnDialogFragmentDismissedListener() {
                     @Override
                     public void onDialogFragmentDismissedListener(int[] types, String[] names) {
@@ -93,9 +93,9 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_race:
                 fm = getFragmentManager();
                 NewRaceDialogFragment race = new NewRaceDialogFragment();
-                title = new Bundle();
-                title.putString("title", getString(R.string.race_title));
-                race.setArguments(title);
+                arguments = new Bundle();
+                arguments.putString("title", getString(R.string.race_title));
+                race.setArguments(arguments);
                 race.listener = new NewRaceDialogFragment.OnDialogFragmentDismissedListener() {
                     @Override
                     public void onDialogFragmentDismissedListener(int[] types, String[] names) {
@@ -131,6 +131,28 @@ public class MainActivity extends AppCompatActivity {
             case R.id.action_season:
                 return true;
             case R.id.action_settings:
+                // test TableView
+                fm = getFragmentManager();
+                TableDialogFragment raceTable = new TableDialogFragment();
+                arguments = new Bundle();
+                arguments.putString("header", "Player;Races;Won (%)");
+                String data = "Lars Streblow;120;80 (66.6)";
+                data += ";Anton;100;60 (60.0)";
+                data += ";Bertold;100;60 (60.0)";
+                data += ";Cristoph;100;60 (60.0)";
+                data += ";Detlef;100;60 (60.0)";
+                data += ";Erwin;100;60 (60.0)";
+                data += ";Friedrich;100;60 (60.0)";
+                data += ";Gustaf;100;60 (60.0)";
+                data += ";Harald;100;60 (60.0)";
+                data += ";Ingolf;100;60 (60.0)";
+                data += ";Jürgen;100;60 (60.0)";
+                data += ";Konrad;100;60 (60.0)";
+                data += ";Lothar;100;60 (60.0)";
+                data += ";Martin;100;60 (60.0)";
+                arguments.putString("data", data);
+                raceTable.setArguments(arguments);
+                raceTable.show(fm, "RaceTable");
                 return true;
             case R.id.action_help:
                 HelpDialog help = new HelpDialog(this);

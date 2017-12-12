@@ -30,7 +30,6 @@ public class MainView extends View {
     public int marginWidth;
     public int marginHeight;
     public float zoomCar;
-    public float maxZoomFactor;
     public int numCheckpoints;
 
     public int paperColor;
@@ -48,6 +47,7 @@ public class MainView extends View {
 
     private ScaleGestureDetector mScaleDetector;
     private float mScaleFactor;
+    public float maxZoomFactor;
     private int mode = 0;
     private static int NONE = 0;
     private static int DRAG = 1;
@@ -266,10 +266,10 @@ public class MainView extends View {
             float minYScale = (float)getHeight() / (float)bm_h;
             mScaleFactor = Math.max(Math.min(minXScale, minYScale), Math.min(mScaleFactor, maxZoomFactor));
         }
+        /* canvas-drawing code */
         canvas.save();
         canvas.scale(mScaleFactor, mScaleFactor);
         canvas.translate(translateX / mScaleFactor, translateY / mScaleFactor);
-        /* canvas-drawing code */
         canvas.drawARGB(255,128,128,128);
         canvas.drawBitmap(bm, 0, 0, null);
         drawCars(canvas);
