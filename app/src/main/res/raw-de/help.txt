@@ -14,5 +14,5 @@ Wenn die neue Position außerhalb der Strecke liegt (rot markiert), wird Ihre ak
 Sehen Sie, was noch möglich ist:<br>
 <img src="help2"><br>
 Sie können die Strecke verlassen (abkürzen), wenn zumindest der Zielpunkt auf der Strecke liegt, selbst wenn die direkte Verbindung außerhalb der Strecke liegt.<br>
-Der grüne Kreis in der Mitte der untersten Linie ist ein zulässiger Zielpunkt.
+Die grünen Kreise in der untersten Linie sind zulässige Zielpunkte.
 

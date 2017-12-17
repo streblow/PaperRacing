@@ -29,6 +29,7 @@ public class TableView extends View {
     private int rowHeight;
     private String header;
     private String data;
+    private String currentplayer;
     private String[] headerCells;
     private String[] dataCells;
 
@@ -56,17 +57,13 @@ public class TableView extends View {
     }
 
     public void init(Context context) {
-        init(context, 0, null);
         mAppContext = context;
     }
 
-    public void init(Context context, int columns, ArrayList<String> tabledata) {
-        mScaleFactor = 1.0f;
-    }
-
-    public void updateResources(String header, String data, Float textsize) {
+    public void updateResources(String header, String data, String currentplayer, Float textsize) {
         this.header = header;
         this.data = data;
+        this.currentplayer = currentplayer;
         headerCells = header.split(";");
         dataCells = data.split(";", -1);
         if (dataCells.length == 1)
@@ -103,42 +100,47 @@ public class TableView extends View {
         rowHeight = (rowHeight * 1500) / 1000; // increase height by factor 1.5
         tableHeight = rowHeight * (1 + dataCells.length / headerCells.length);
         this.textsize = paint.getTextSize();
+        // if the table is smaller than current width, zoom in (scale)
         if (getWidth() > tableWidth)
             mScaleFactor = (float)getWidth() / (float)tableWidth;
+        // if the table is wider than current width, zoom out (shrink)
+        // shrink max to 150% of tableWidth, scroll otherwise
         else
-            mScaleFactor = Math.max((float)getWidth() / (float)tableWidth, 0.5f); // limit width to double tableWidth, scroll otherwise
+            mScaleFactor = Math.max((float)getWidth() / (float)tableWidth, 0.666f);
     }
 
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        //updateResources(header, data, textsize);
+        if (!dragged)
+            updateResources(header, data, currentplayer, textsize);
         /* canvas-drawing code */
         canvas.save();
         canvas.scale(mScaleFactor, mScaleFactor);
         canvas.translate(translateX / mScaleFactor, translateY / mScaleFactor);
         canvas.drawColor(Color.WHITE);
         Paint paint = new Paint();
-        // draw table content
-        paint.setColor(Color.BLUE);
+        // draw table content, don't take care of the header, it'll be drawn later
         Typeface tf = Typeface.createFromAsset(mAppContext.getAssets(), "fonts/HandWritten.ttf");
         paint.setTypeface(tf);
-        paint.setShadowLayer(2.0f, 1.0f, 1.0f, Color.DKGRAY);
         paint.setTextSize(textsize);
         paint.setStrokeWidth(1.0f);
         paint.setStyle(Paint.Style.FILL);
-        int x = 0;
-        for (int i = 0; i < headerCells.length; i++) {
-            canvas.drawText(" " + headerCells[i], x, rowHeight - (rowHeight * 250) / 1000, paint);
-            x += columnWidths[i];
-        }
-        paint.setColor(Color.rgb(0x80, 0x80, 0xe0));
+        int x;
+        paint.setColor(Color.BLUE);
         paint.clearShadowLayer();
         paint.setTextSize(textsize - 5.0f);
         for (int i = 0; i < dataCells.length / headerCells.length; i++) {
             x = 0;
             for (int j = 0; j < headerCells.length; j++) {
-                canvas.drawText(" " + dataCells[i * headerCells.length + j],
-                    x, rowHeight + (i + 1) * rowHeight - (rowHeight * 250) / 1000, paint);
+                if (dataCells[i * headerCells.length].equalsIgnoreCase(currentplayer)) {
+                    int color = paint.getColor();
+                    paint.setColor(Color.MAGENTA);
+                    canvas.drawText(" " + dataCells[i * headerCells.length + j],
+                            x, rowHeight + (i + 1) * rowHeight - (rowHeight * 250) / 1000, paint);
+                    paint.setColor(color);
+                } else
+                    canvas.drawText(" " + dataCells[i * headerCells.length + j],
+                        x, rowHeight + (i + 1) * rowHeight - (rowHeight * 250) / 1000, paint);
                 x += columnWidths[j];
             }
         }
@@ -147,10 +149,10 @@ public class TableView extends View {
         canvas.save();
         canvas.scale(mScaleFactor, mScaleFactor);
         canvas.translate(translateX / mScaleFactor, 0);
-        paint.setColor(Color.WHITE);
+        paint.setColor(Color.BLUE);
         paint.setStyle(Paint.Style.FILL_AND_STROKE);
         canvas.drawRect(0, 0, tableWidth, rowHeight, paint);
-        paint.setColor(Color.BLUE);
+        paint.setColor(Color.WHITE);
         paint.setShadowLayer(2.0f, 1.0f, 1.0f, Color.DKGRAY);
         paint.setTextSize(textsize);
         paint.setStrokeWidth(1.0f);
@@ -169,7 +171,7 @@ public class TableView extends View {
             case MotionEvent.ACTION_DOWN:
                 mode = DRAG;
                 //We assign the current X and Y coordinate of the finger to startX and startY minus the previously translated
-                //amount for each coordinates This works even when we are translating the first time because the initial
+                //amount for each coordinates. This works even when we are translating the first time because the initial
                 //values for these two variables is zero.
                 startX = event.getX() - previousTranslateX;
                 startY = event.getY() - previousTranslateY;

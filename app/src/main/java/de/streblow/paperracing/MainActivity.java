@@ -3,11 +3,13 @@ package de.streblow.paperracing;
 import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Handler;
+import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageButton;
 
 import java.util.ArrayList;
 
@@ -16,6 +18,8 @@ public class MainActivity extends AppCompatActivity {
     private final Context context = this;
     private MainView mainView = null;
     private Handler waitHandler = null;
+    private int buttonClicked = 0;
+    private boolean saveClick = true;
 
     private ArrayList<RaceStatsEntry> raceStats;
 
@@ -36,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         mainView = (MainView)findViewById(R.id.cvMainView);
         mainView.buttonHidden = true;
         waitHandler = new Handler();
+        buttonClicked = 0;
         raceStats = new ArrayList<RaceStatsEntry>();
     }
 
@@ -89,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 quickrace.show(fm, "Quickrace");
+                resetButtons();
                 return true;
             case R.id.action_race:
                 fm = getFragmentManager();
@@ -127,8 +133,10 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 race.show(fm, "Race");
+                resetButtons();
                 return true;
             case R.id.action_season:
+                resetButtons();
                 return true;
             case R.id.action_settings:
                 // test TableView
@@ -151,6 +159,9 @@ public class MainActivity extends AppCompatActivity {
                 data += ";Lothar;100;60 (60.0)";
                 data += ";Martin;100;60 (60.0)";
                 arguments.putString("data", data);
+                arguments.putString("currentplayer", "Konrad");
+                arguments.putInt("width", getWindow().getAttributes().width);
+                arguments.putInt("height", getWindow().getAttributes().height);
                 raceTable.setArguments(arguments);
                 raceTable.show(fm, "RaceTable");
                 return true;
@@ -174,107 +185,345 @@ public class MainActivity extends AppCompatActivity {
             animateMoves();
     }
 
+    public void resetButtons() {
+        resetButton(1);
+        resetButton(2);
+        resetButton(3);
+        resetButton(4);
+        resetButton(5);
+        resetButton(6);
+        resetButton(7);
+        resetButton(8);
+        resetButton(9);
+    }
+
+    public void resetButton(int n) {
+        ImageButton btn;
+        switch (n) {
+            case 1:
+                btn = (ImageButton)findViewById(R.id.imageButton1);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 2:
+                btn = (ImageButton)findViewById(R.id.imageButton2);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 3:
+                btn = (ImageButton)findViewById(R.id.imageButton3);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 4:
+                btn = (ImageButton)findViewById(R.id.imageButton4);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 5:
+                btn = (ImageButton)findViewById(R.id.imageButton5);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 6:
+                btn = (ImageButton)findViewById(R.id.imageButton6);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 7:
+                btn = (ImageButton)findViewById(R.id.imageButton7);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 8:
+                btn = (ImageButton)findViewById(R.id.imageButton8);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            case 9:
+                btn = (ImageButton)findViewById(R.id.imageButton9);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button));
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void setButtonYes(int n) {
+        ImageButton btn;
+        switch (n) {
+            case 1:
+                btn = (ImageButton)findViewById(R.id.imageButton1);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 2:
+                btn = (ImageButton)findViewById(R.id.imageButton2);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 3:
+                btn = (ImageButton)findViewById(R.id.imageButton3);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 4:
+                btn = (ImageButton)findViewById(R.id.imageButton4);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 5:
+                btn = (ImageButton)findViewById(R.id.imageButton5);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 6:
+                btn = (ImageButton)findViewById(R.id.imageButton6);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 7:
+                btn = (ImageButton)findViewById(R.id.imageButton7);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 8:
+                btn = (ImageButton)findViewById(R.id.imageButton8);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            case 9:
+                btn = (ImageButton)findViewById(R.id.imageButton9);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_yes));
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void setButtonNo(int n) {
+        ImageButton btn;
+        switch (n) {
+            case 1:
+                btn = (ImageButton)findViewById(R.id.imageButton1);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 2:
+                btn = (ImageButton)findViewById(R.id.imageButton2);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 3:
+                btn = (ImageButton)findViewById(R.id.imageButton3);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 4:
+                btn = (ImageButton)findViewById(R.id.imageButton4);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 5:
+                btn = (ImageButton)findViewById(R.id.imageButton5);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 6:
+                btn = (ImageButton)findViewById(R.id.imageButton6);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 7:
+                btn = (ImageButton)findViewById(R.id.imageButton7);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 8:
+                btn = (ImageButton)findViewById(R.id.imageButton8);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            case 9:
+                btn = (ImageButton)findViewById(R.id.imageButton9);
+                btn.setBackground(ContextCompat.getDrawable(getApplicationContext(),R.drawable.button_no));
+                break;
+            default:
+                break;
+        }
+    }
+
     public void onImageButton1Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.DOWNRIGHT);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 1 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(1);
+                    mainView.game.currentplayer().move(Player.DOWNRIGHT);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 1;
+                    setButtonYes(1);
+                }
             }
     }
 
     public void onImageButton2Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.DOWN);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 2 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(2);
+                    mainView.game.currentplayer().move(Player.DOWN);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 2;
+                    setButtonYes(2);
+                }
             }
     }
 
     public void onImageButton3Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.DOWNLEFT);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 3 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(3);
+                    mainView.game.currentplayer().move(Player.DOWNLEFT);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 3;
+                    setButtonYes(3);
+                }
             }
     }
 
     public void onImageButton4Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.RIGHT);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 4 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(4);
+                    mainView.game.currentplayer().move(Player.RIGHT);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 4;
+                    setButtonYes(4);
+                }
             }
     }
 
     public void onImageButton5Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.SAME);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 5 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(5);
+                    mainView.game.currentplayer().move(Player.SAME);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 5;
+                    setButtonYes(5);
+                }
             }
     }
 
     public void onImageButton6Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.LEFT);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 6 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(6);
+                    mainView.game.currentplayer().move(Player.LEFT);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 6;
+                    setButtonYes(6);
+                }
             }
     }
 
     public void onImageButton7Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.UPRIGHT);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 7 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(7);
+                    mainView.game.currentplayer().move(Player.UPRIGHT);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 7;
+                    setButtonYes(7);
+                }
             }
     }
 
     public void onImageButton8Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.UP);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 8 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(8);
+                    mainView.game.currentplayer().move(Player.UP);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 8;
+                    setButtonYes(8);
+                }
             }
     }
 
     public void onImageButton9Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
-                mainView.game.currentplayer().move(Player.UPLEFT);
-                mainView.game.nextplayer();
-                mainView.invalidate();
-                if (!mainView.game.finished())
-                    animateMoves();
+                if (buttonClicked == 9 || !saveClick) {
+                    buttonClicked = 0;
+                    if (saveClick)
+                        resetButton(9);
+                    mainView.game.currentplayer().move(Player.UPLEFT);
+                    mainView.game.nextplayer();
+                    mainView.invalidate();
+                    if (!mainView.game.finished())
+                        animateMoves();
+                } else {
+                    if (buttonClicked != 0)
+                        resetButton(buttonClicked);
+                    buttonClicked = 9;
+                    setButtonYes(9);
+                }
             }
     }
 
     public void onImageButtonUndo(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
+            if (saveClick) {
+                buttonClicked = 0;
+                resetButtons();
+            }
             if (mainView.game.currentplayer().type() == Player.HUM) {
                 do
                     mainView.game.undo();
