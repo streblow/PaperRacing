@@ -25,4 +25,5 @@
     <string name="quickrace_player_name">playername</string>
     <string name="race_title">Race</string>
     <string name="season_title">Season</string>
+    <string name="buttonDescription">Do</string>
 </resources>

@@ -4,9 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="de.streblow.paperracing.MainActivity"
-    tools:layout_editor_absoluteY="81dp"
-    tools:layout_editor_absoluteX="0dp">
+    tools:context="de.streblow.paperracing.MainActivity">
 
     <de.streblow.paperracing.MainView
         android:id="@+id/cvMainView"
@@ -15,6 +13,7 @@
 
     <ImageButton
         android:id="@+id/imageButton1"
+        android:contentDescription="@string/buttonDescription"
         android:background="@drawable/button"
         android:onClick="onImageButton1Click"
         android:layout_width="wrap_content"
@@ -22,105 +21,125 @@
         android:layout_alignParentBottom="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
+        app:srcCompat="@drawable/button"
         />
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton2Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/imageButton1"
         android:layout_toStartOf="@+id/imageButton1"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton3Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_toLeftOf="@+id/imageButton2"
         android:layout_toStartOf="@+id/imageButton2"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton4Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton1"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton5Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton2"
         android:layout_toLeftOf="@+id/imageButton4"
         android:layout_toStartOf="@+id/imageButton4"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton6"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton6Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton3"
         android:layout_toLeftOf="@+id/imageButton5"
         android:layout_toStartOf="@+id/imageButton5"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton7"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton7Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton4"
         android:layout_alignParentEnd="true"
         android:layout_alignParentRight="true"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton8"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton8Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton4"
         android:layout_toLeftOf="@+id/imageButton7"
         android:layout_toStartOf="@+id/imageButton7"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButton9"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button"
         android:onClick="onImageButton9Click"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_above="@+id/imageButton6"
         android:layout_toLeftOf="@+id/imageButton8"
         android:layout_toStartOf="@+id/imageButton8"
-        app:srcCompat="@drawable/button" />
+        app:srcCompat="@drawable/button"
+        />
 
     <ImageButton
         android:id="@+id/imageButtonUndo"
-        android:background="@null"
+        android:contentDescription="@string/buttonDescription"
+        android:background="@drawable/button_undo"
         android:onClick="onImageButtonUndo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentLeft="true"
-        app:srcCompat="@drawable/button_undo" />
+        app:srcCompat="@drawable/button_undo"
+        />
+
 
 </RelativeLayout>

@@ -27,4 +27,5 @@
     <string name="quickrace_player_name">Spielername</string>
     <string name="race_title">Rennen</string>
     <string name="season_title">Meisterschaft</string>
+    <string name="buttonDescription">Los</string>
 </resources>
