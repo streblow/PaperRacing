@@ -135,7 +135,7 @@ public class Game {
         int vx,vy,x1,y1, ret = -1;
         double rc = 0;
         double x;
-        double time = -1.0;
+        double time = 1.0;
         int sy = circuit.starty;
         int sx1 = circuit.startx1 - 1;
         int sx2 = circuit.startx2 - 1;
@@ -150,8 +150,8 @@ public class Game {
             if (vx == 0) { // Car goes Vertical
                 if ((x1 + vx >= sx1) && (x1 + vx <= sx2)) { // Within finishing line on x-axis
                     if (((y1 <= sy) && (y1 + vy >= sy)) || ((y1 >= sy) && (y1 + vy <= sy))) { // Around or on finish on y-axis
-                        double t = ((double)vy - (double)(sy - y1)) / (double) vy;
-                        if (t > time) {
+                        double t = (double)(sy - y1) / (double) vy;
+                        if (t < time) {
                             time = t;
                             ret = i;
                         }
@@ -162,8 +162,8 @@ public class Game {
                 if (rc == 0) { // Car goes Horizontal
                     if ((x1 + vx >= sx1) && (x1 + vx <= sx2)) { // Ending on finishing line on x-axis
                         if (y1 + vy == sy) { // Ending on finishing line on y-axis
-                            double t = ((double)vx - (double)(Math.max(sx1 - x1, x1 - sx2))) / (double) vx;
-                            if (t > time) {
+                            double t = (double)(Math.max(sx1 - x1, x1 - sx2)) / (double) vx;
+                            if (t < time) {
                                 time = t;
                                 ret = i;
                             }
@@ -174,8 +174,8 @@ public class Game {
                     x += x1;
                     if (((x >= x1) && (x <= x1 + vx)) || ((x <= x1) && (x >= x1 + vx))) { // Within the vector, not just 'in line'
                         if ((x >= sx1) && (x <= sx2)) { // Within the starting/finishimng line
-                            double t = ((double)vy - (double)(sy - y1)) / (double) vy;
-                            if (t > time) {
+                            double t = (double)(sy - y1) / (double) vy;
+                            if (t < time) {
                                 time = t;
                                 ret = i;
                             }
