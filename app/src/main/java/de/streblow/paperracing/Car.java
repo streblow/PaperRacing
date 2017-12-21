@@ -143,12 +143,11 @@ public class Car {
     public void undo() {
         x -= hist[turn].getx();
         y -= hist[turn].gety();
+        if (fault[turn]) {
+            faultcount--;
+            fault[turn] = false;
+        }
         if (--turn < 0)
             turn = 0;
-        else if (fault[turn + 1]) {
-            undo();
-            faultcount--;
-            fault[turn + 1] = false;
-        }
     }
 }

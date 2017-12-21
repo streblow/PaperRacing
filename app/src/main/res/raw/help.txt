@@ -3,7 +3,7 @@ This is a short help for the app PaperRacing.<br>
 The short help is not complete yet.<br>
 <br>
 PaperRacing is a game also known as racetrack or vectorrace.<br>
-You can go to en.wikipedia.org/wiki/Racetrack_(game) to get an idea of how it works.<br>
+You can go to en.wikipedia.org/wiki/Racetrack_%28game%29 to get an idea of how it works.<br>
 <br>
 Here you see a normal move situation:<br>
 <img src="help1"><br>
