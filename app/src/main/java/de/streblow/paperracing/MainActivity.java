@@ -11,6 +11,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
 
+import java.io.DataInputStream;
+import java.io.DataOutputStream;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
@@ -22,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
     private boolean saveClick = true;
 
     private ArrayList<RaceStatsEntry> raceStats;
+
+    private final String paperRacerData = "PaperRacerData";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +49,7 @@ public class MainActivity extends AppCompatActivity {
         mainView.buttonHidden = true;
         waitHandler = new Handler();
         buttonClicked = 0;
-        raceStats = new ArrayList<RaceStatsEntry>();
+        raceStats = new ArrayList<>();
     }
 
     @Override
@@ -144,22 +152,20 @@ public class MainActivity extends AppCompatActivity {
                 TableDialogFragment raceTable = new TableDialogFragment();
                 arguments = new Bundle();
                 arguments.putString("header", "Player;Races;Won (%)");
-                String data = "Lars Streblow;120;80 (66.6)";
-                data += ";Anton;100;60 (60.0)";
-                data += ";Bertold;100;60 (60.0)";
-                data += ";Cristoph;100;60 (60.0)";
-                data += ";Detlef;100;60 (60.0)";
-                data += ";Erwin;100;60 (60.0)";
-                data += ";Friedrich;100;60 (60.0)";
-                data += ";Gustaf;100;60 (60.0)";
-                data += ";Harald;100;60 (60.0)";
-                data += ";Ingolf;100;60 (60.0)";
-                data += ";Jürgen;100;60 (60.0)";
-                data += ";Konrad;100;60 (60.0)";
-                data += ";Lothar;100;60 (60.0)";
-                data += ";Martin;100;60 (60.0)";
+                String data = "";
+                for (int i = 0; i < raceStats.size(); i++) {
+                    if (i != 0)
+                        data += ";";
+                    float ratewon = 100.0f * ((float)raceStats.get(i).won /
+                        (float)Math.max(raceStats.get(i).races, 1));
+                    String rate = String.format("%.1f", ratewon);
+                    data += raceStats.get(i).playerName + ";" +
+                        raceStats.get(i).races + ";" +
+                        raceStats.get(i).won + " (" +
+                        rate + ")";
+                }
                 arguments.putString("data", data);
-                arguments.putString("currentplayer", "Konrad");
+                arguments.putString("currentplayer", mainView.game.nameOfFavoritePlayer);
                 arguments.putInt("width", getWindow().getAttributes().width);
                 arguments.putInt("height", getWindow().getAttributes().height);
                 raceTable.setArguments(arguments);
@@ -329,6 +335,37 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
+    public void updateRaceStats() {
+        if (mainView.game.type != Game.RACE)
+            return;
+        // update all human players race count
+        for (int i = 0; i < mainView.game.getplayercount(); i++)
+            if (mainView.game.getplayer(i).type() == Player.HUM) {
+                String name = mainView.game.getplayer(i).getname();
+                Boolean exists = false;
+                int index = -1;
+                for (int j = 0; j < raceStats.size(); j++)
+                    if (raceStats.get(j).playerName.equalsIgnoreCase(name)) {
+                        exists = true;
+                        index = j;
+                        continue;
+                    }
+                if (exists)
+                    raceStats.get(index).races++;
+                else
+                    raceStats.add(new RaceStatsEntry(name, 1, 0));
+            }
+        // update winners win count if is human
+        if (mainView.game.getplayer(mainView.game.winner).type() == Player.HUM) {
+            String name = mainView.game.getplayer(mainView.game.winner).getname();
+            for (int i = 0; i < raceStats.size(); i++)
+                if (raceStats.get(i).playerName.equalsIgnoreCase(name)) {
+                    raceStats.get(i).won++;
+                    continue;
+                }
+        }
+    }
+
     public void onImageButton1Click(View v) {
         if (!mainView.game.finished() && !mainView.firstRun)
             if (mainView.game.currentplayer().type() == Player.HUM) {
@@ -341,6 +378,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -362,6 +401,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -383,6 +424,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -404,6 +447,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -425,6 +470,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -446,6 +493,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -467,6 +516,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -488,6 +539,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -509,6 +562,8 @@ public class MainActivity extends AppCompatActivity {
                     mainView.invalidate();
                     if (!mainView.game.finished())
                         animateMoves();
+                    else
+                        updateRaceStats();
                 } else {
                     if (buttonClicked != 0)
                         resetButton(buttonClicked);
@@ -540,9 +595,11 @@ public class MainActivity extends AppCompatActivity {
                     mainView.game.currentplayer().ask();
                     mainView.invalidate();
                     mainView.game.nextplayer();
-                    if (!mainView.game.finished())
+                    if (!mainView.game.finished()) {
                         if (mainView.game.currentplayer().type() == Player.COM)
                             waitHandler.postDelayed(this, mainView.animationDuration);
+                    } else
+                        updateRaceStats();
                 }
             }, mainView.animationDuration);
         }
@@ -551,13 +608,18 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onSaveInstanceState(Bundle savedInstanceState) {
-//        savedInstanceState.putInt("MATEINMOVES", mMateInMoves);
-//        savedInstanceState.putBoolean("FIRSTMOVEONLY", mFirstMoveOnly);
-//        BoardView boardView = (BoardView) findViewById(R.id.cvBoardView);
-//        boardView.saveState(savedInstanceState);
-
         // Always call the superclass so it can save the view hierarchy state
         super.onSaveInstanceState(savedInstanceState);
+
+        if (raceStats.size() > 0) {
+            savedInstanceState.putInt("racelistlength", raceStats.size());
+            for (int i = 0; i < raceStats.size(); i++) {
+                savedInstanceState.putString("racelistentry" + i,
+                    raceStats.get(i).playerName + ";" +
+                    raceStats.get(i).races + ";" +
+                    raceStats.get(i).won + ";" );
+            }
+        }
     }
 
     @Override
@@ -565,24 +627,82 @@ public class MainActivity extends AppCompatActivity {
         // Always call the superclass so it can restore the view hierarchy
         super.onRestoreInstanceState(savedInstanceState);
 
-//        mAppMode = savedInstanceState.getInt("APPMODE");
-//        mMateInMoves = savedInstanceState.getInt("MATEINMOVES");
-//        mFirstMoveOnly = savedInstanceState.getBoolean("FIRSTMOVEONLY");
-//        BoardView boardView = (BoardView) findViewById(R.id.cvBoardView);
-//        boardView.restoreState(savedInstanceState);
+        if (raceStats == null)
+            raceStats = new ArrayList<>();
+        int length = savedInstanceState.getInt("racelistlength", 0);
+        for (int i = 0; i < length; i++) {
+            String entryStr = savedInstanceState.getString("racelistentry" + i);
+            String[] split = entryStr.split(";");
+            RaceStatsEntry entry = new RaceStatsEntry(split[0],
+                Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+            raceStats.add(entry);
+        }
     }
 
     @Override
     public void onPause() {
         super.onPause();
-//        saveState();
+        saveState();
     }
 
     @Override
     public void onResume() {
         super.onResume();
-//        restoreState();
+        restoreState();
     }
 
+    public void saveState() {
+        DataOutputStream dos = null;
+        try {
+            File file = new File(getFilesDir(), paperRacerData);
+            dos = new DataOutputStream(new FileOutputStream(file));
+            if (raceStats.size() > 0) {
+                dos.writeInt(raceStats.size());
+                for (int i = 0; i < raceStats.size(); i++) {
+                    dos.writeUTF(raceStats.get(i).playerName + ";" +
+                        raceStats.get(i).races + ";" +
+                        raceStats.get(i).won + ";" );
+                }
+            }
+            dos.close();
+            dos = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (dos != null)
+                try {
+                    dos.close();
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+        }
+    }
+
+    public void restoreState() {
+        DataInputStream dis = null;
+        try {
+            File file = new File(getFilesDir(), paperRacerData);
+            dis = new DataInputStream(new FileInputStream(file));
+            if (raceStats == null)
+                raceStats = new ArrayList<>();
+            int length = dis.readInt();
+            for (int i = 0; i < length; i++) {
+                String entryStr = dis.readUTF();
+                String[] split = entryStr.split(";");
+                RaceStatsEntry entry = new RaceStatsEntry(split[0],
+                        Integer.parseInt(split[1]), Integer.parseInt(split[2]));
+                raceStats.add(entry);
+            }
+            dis.close();
+            dis = null;
+        } catch (Exception e) {
+            e.printStackTrace();
+            if (dis != null)
+                try {
+                    dis.close();
+                } catch (IOException ioe) {
+                    ioe.printStackTrace();
+                }
+        }
+    }
 
 }

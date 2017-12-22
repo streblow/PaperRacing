@@ -73,7 +73,10 @@ public class MainView extends View {
     }
 
     public void init(Context context) {
-        init(context, new int[] {Player.HUM, Player.COM}, new String[] {"Larsie", "PaperRacer"});
+        Game dummy = new Game();
+        init(context,
+            new int[] {Player.COM, Player.COM, Player.COM},
+            new String[] {dummy.nameOfFavoritePlayer, "2", "3"});
     }
 
     public void init(Context context, int[] types, String[] names) {

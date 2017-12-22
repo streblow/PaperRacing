@@ -40,7 +40,7 @@ public class Game {
         player = new Player [playercount];
         int col = Color.DKGRAY;
         for (int i = 0; i < playercount; i++) {
-            if (name[i].substring(0, nameOfFavoritePlayer.length()).equalsIgnoreCase(nameOfFavoritePlayer))
+            if (name[i].substring(0, Math.min(nameOfFavoritePlayer.length(), name[i].length())).equalsIgnoreCase(nameOfFavoritePlayer))
                 col = colorOfFavoritePlayer;
             else
                 switch (i) {

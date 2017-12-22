@@ -132,7 +132,7 @@ public class TableView extends View {
         for (int i = 0; i < dataCells.length / headerCells.length; i++) {
             x = 0;
             for (int j = 0; j < headerCells.length; j++) {
-                if (dataCells[i * headerCells.length].equalsIgnoreCase(currentplayer)) {
+                if (dataCells[i * headerCells.length].substring(0, Math.min(currentplayer.length(), dataCells[i * headerCells.length].length())).equalsIgnoreCase(currentplayer)) {
                     int color = paint.getColor();
                     paint.setColor(Color.MAGENTA);
                     canvas.drawText(" " + dataCells[i * headerCells.length + j],
