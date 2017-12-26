@@ -143,33 +143,15 @@ public class MainActivity extends AppCompatActivity {
                 race.show(fm, "Race");
                 resetButtons();
                 return true;
+            case R.id.action_racestats_clear:
+                clearRaceStats();
+                return true;
             case R.id.action_season:
                 resetButtons();
                 return true;
             case R.id.action_settings:
                 // test TableView
-                fm = getFragmentManager();
-                TableDialogFragment raceTable = new TableDialogFragment();
-                arguments = new Bundle();
-                arguments.putString("header", "Player;Races;Won (%)");
-                String data = "";
-                for (int i = 0; i < raceStats.size(); i++) {
-                    if (i != 0)
-                        data += ";";
-                    float ratewon = 100.0f * ((float)raceStats.get(i).won /
-                        (float)Math.max(raceStats.get(i).races, 1));
-                    String rate = String.format("%.1f", ratewon);
-                    data += raceStats.get(i).playerName + ";" +
-                        raceStats.get(i).races + ";" +
-                        raceStats.get(i).won + " (" +
-                        rate + ")";
-                }
-                arguments.putString("data", data);
-                arguments.putString("currentplayer", mainView.game.nameOfFavoritePlayer);
-                arguments.putInt("width", getWindow().getAttributes().width);
-                arguments.putInt("height", getWindow().getAttributes().height);
-                raceTable.setArguments(arguments);
-                raceTable.show(fm, "RaceTable");
+                showRaceStats();
                 return true;
             case R.id.action_help:
                 HelpDialog help = new HelpDialog(this);
@@ -338,6 +320,8 @@ public class MainActivity extends AppCompatActivity {
     public void updateRaceStats() {
         if (mainView.game.type != Game.RACE)
             return;
+        if (mainView.game.getplayercount() < 2)
+            return;
         // update all human players race count
         for (int i = 0; i < mainView.game.getplayercount(); i++)
             if (mainView.game.getplayer(i).type() == Player.HUM) {
@@ -348,7 +332,7 @@ public class MainActivity extends AppCompatActivity {
                     if (raceStats.get(j).playerName.equalsIgnoreCase(name)) {
                         exists = true;
                         index = j;
-                        continue;
+                        break;
                     }
                 if (exists)
                     raceStats.get(index).races++;
@@ -361,9 +345,44 @@ public class MainActivity extends AppCompatActivity {
             for (int i = 0; i < raceStats.size(); i++)
                 if (raceStats.get(i).playerName.equalsIgnoreCase(name)) {
                     raceStats.get(i).won++;
-                    continue;
+                    break;
                 }
         }
+        // show race stats
+        showRaceStats();
+    }
+
+    public void showRaceStats() {
+        FragmentManager fm = null;
+        Bundle arguments = null;
+        fm = getFragmentManager();
+        TableDialogFragment raceTable = new TableDialogFragment();
+        arguments = new Bundle();
+        arguments.putString("header", getString(R.string.racetable_header_player) + ";" +
+                getString(R.string.racetable_header_races) + ";" +
+                getString(R.string.racetable_header_won));
+        String data = "";
+        for (int i = 0; i < raceStats.size(); i++) {
+            if (i != 0)
+                data += ";";
+            float ratewon = 100.0f * ((float)raceStats.get(i).won /
+                    (float)Math.max(raceStats.get(i).races, 1));
+            String rate = String.format("%.1f", ratewon);
+            data += raceStats.get(i).playerName + ";" +
+                    raceStats.get(i).races + ";" +
+                    raceStats.get(i).won + " (" +
+                    rate + ")";
+        }
+        arguments.putString("data", data);
+        arguments.putString("currentplayer", mainView.game.nameOfFavoritePlayer);
+        arguments.putInt("width", getWindow().getAttributes().width);
+        arguments.putInt("height", getWindow().getAttributes().height);
+        raceTable.setArguments(arguments);
+        raceTable.show(fm, "RaceTable");
+    }
+
+    public void clearRaceStats() {
+        raceStats.clear();
     }
 
     public void onImageButton1Click(View v) {

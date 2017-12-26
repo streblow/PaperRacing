@@ -13,7 +13,7 @@
 
     <ImageButton
         android:id="@+id/imageButton1"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton1Click"
         android:layout_width="wrap_content"
@@ -26,7 +26,7 @@
 
     <ImageButton
         android:id="@+id/imageButton2"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton2Click"
         android:layout_width="wrap_content"
@@ -39,7 +39,7 @@
 
     <ImageButton
         android:id="@+id/imageButton3"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton3Click"
         android:layout_width="wrap_content"
@@ -52,7 +52,7 @@
 
     <ImageButton
         android:id="@+id/imageButton4"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton4Click"
         android:layout_width="wrap_content"
@@ -65,7 +65,7 @@
 
     <ImageButton
         android:id="@+id/imageButton5"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton5Click"
         android:layout_width="wrap_content"
@@ -78,7 +78,7 @@
 
     <ImageButton
         android:id="@+id/imageButton6"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton6Click"
         android:layout_width="wrap_content"
@@ -91,7 +91,7 @@
 
     <ImageButton
         android:id="@+id/imageButton7"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton7Click"
         android:layout_width="wrap_content"
@@ -104,7 +104,7 @@
 
     <ImageButton
         android:id="@+id/imageButton8"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton8Click"
         android:layout_width="wrap_content"
@@ -117,7 +117,7 @@
 
     <ImageButton
         android:id="@+id/imageButton9"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button"
         android:onClick="onImageButton9Click"
         android:layout_width="wrap_content"
@@ -130,7 +130,7 @@
 
     <ImageButton
         android:id="@+id/imageButtonUndo"
-        android:contentDescription="@string/buttonDescription"
+        android:contentDescription="@string/button_description"
         android:background="@drawable/button_undo"
         android:onClick="onImageButtonUndo"
         android:layout_width="wrap_content"
