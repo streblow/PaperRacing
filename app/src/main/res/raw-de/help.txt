@@ -14,5 +14,11 @@ Wenn die neue Position außerhalb der Strecke liegt (rot markiert), wird Ihre ak
 Sehen Sie, was noch möglich ist:<br>
 <img src="help2"><br>
 Sie können die Strecke verlassen (abkürzen), wenn zumindest der Zielpunkt auf der Strecke liegt, selbst wenn die direkte Verbindung außerhalb der Strecke liegt.<br>
-Die grünen Kreise in der untersten Linie sind zulässige Zielpunkte.
+Die grünen Kreise in der untersten Linie sind zulässige Zielpunkte.<br>
+<br>
+Spielregeln für PaperRacing<br>
+Das Verlassen der Strecke ist nicht erlaubt. Wenn die Strecke nach einem Zug verlassen würde, wird die aktuelle Position beibehalten und die Geschwindigkeit wird auf Null gesetzt.<br>
+Nur der Start- und Endpunkt eines Zuges muss auf der Strecke sein, Abkürzen ist so möglich.<br>
+Wenn zwei Spieler in der selben Runde über die Ziellinie fahren, gewinnt der, der den kürzesten Anteil der Zugstrecke vor dem Ziel hat.<br>
+<li>Wenn zwei Spieler gleichzeitig über die Ziellinie fahren, gewinnt der Spieler, der zuerst gezogen hat.<br>
 

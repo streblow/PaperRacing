@@ -14,5 +14,11 @@ If the new position is out of the track (marked red) your current position will 
 Lets see what is possible too:<br>
 <img src="help2"><br>
 You can leave the track (shorten) if at least the target point is on the track, even if the direct connection leaves it.<br>
-All positions of the bottom line are legal target points.
+All positions of the bottom line are legal target points.<br>
+<br>
+Rules for playing PaperRacing<br>
+Leaving the track is not permitted. If track would be left after a move, current position is held and speed is set to Zero.<br>
+Only start and end points of a move must be on the track, so shortening is possible.<br>
+If two players finish in the same round, the one with the shortest portion of being before the finishing line is the winner.<br>
+If two player finish with the same portion the player who moved first is the winner.<br>
 
