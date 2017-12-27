@@ -4,7 +4,7 @@
     <string name="settings_activity_title">PaperRacing - Settings</string>
     <string name="action_quickrace">Quickrace</string>
     <string name="action_race">Race</string>
-    <string name="action_racestats_clear">Clear race stats</string>
+    <string name="action_racestats">Race Stats</string>
     <string name="action_season">Season</string>
     <string name="action_settings">Settings</string>
     <string name="action_help">Help</string>
@@ -20,12 +20,14 @@
     <string name="name_player">Player</string>
     <string name="name_computer">Computer</string>
     <string name="quickrace_title">Quickrace</string>
-    <string name="quickrace_player_on">on</string>
+    <string name="quickrace_new_title">New Quickrace</string>
+    <string name="quickrace_player_on">active</string>
     <string name="quickrace_player_type_computer">computer</string>
     <string name="quickrace_player_type_human">human</string>
     <string name="quickrace_player_name">playername</string>
     <string name="race_title">Race</string>
-    <string name="season_title">Season</string>
+    <string name="race_new_title">New Race</string>
+    <string name="season_title">New Season</string>
     <string name="button_description">Go</string>
     <string name="racetable_header_player">Player</string>
     <string name="racetable_header_races">Races</string>

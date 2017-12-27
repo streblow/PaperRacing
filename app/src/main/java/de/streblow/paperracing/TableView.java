@@ -81,7 +81,7 @@ public class TableView extends View {
         rowHeight = 0;
         for (int j = 0; j < headerCells.length; j++) {
             columnWidths[j] = 0;
-            String cell = " " + headerCells[j] + " ";
+            String cell = "W" + headerCells[j] + "W";
             paint.getTextBounds(cell, 0, cell.length(), rect);
             if (columnWidths[j] < rect.width())
                 columnWidths[j] = rect.width();

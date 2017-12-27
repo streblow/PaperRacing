@@ -16,6 +16,7 @@ public class Game {
     public int winner = 0;
     public boolean finish = false;
     public boolean gamestarted = false;
+    public double tolerance = 2.0 * Math.PI / 180.0; // 2 degrees
     public String nameOfFavoritePlayer = "lars";
     public int colorOfFavoritePlayer = Color.BLACK;
 
@@ -130,17 +131,17 @@ public class Game {
      */
     int checkfinished() {
         if (player[0].getcar().getturns() < 5)
-            return -1; // Don't do nothing during the first turns (save time)
+            return -1; // Don't do anything during the first turns (save time)
         Car c;
         int vx,vy,x1,y1, ret = -1;
         double rc = 0;
         double x;
-        double time = 1.0;
+        double time = 1.1; // initial time portion of the move spent before the starting/finishing line to get minimized (max. 1.0)
         int sy = circuit.starty;
         int sx1 = circuit.startx1 - 1;
         int sx2 = circuit.startx2 - 1;
         for (int i = 0; i < playercount; i++) {
-            if (player[i].travelledtotal() < 2.0 * Math.PI)
+            if (player[i].travelledtotal() < (2.0 * Math.PI - tolerance))
                 continue;
             c = player[i].getcar();
             vx = c.getvector().getx();
@@ -173,8 +174,8 @@ public class Game {
                 x = (double)(sy - y1) / rc;
                     x += x1;
                     if (((x >= x1) && (x <= x1 + vx)) || ((x <= x1) && (x >= x1 + vx))) { // Within the vector, not just 'in line'
-                        if ((x >= sx1) && (x <= sx2)) { // Within the starting/finishimng line
-                            double t = (double)(sy - y1) / (double) vy;
+                        if ((x >= sx1) && (x <= sx2)) { // Within the starting/finishing line
+                            double t = (double)(sy - y1) / (double) vy; // time portion of the move spent before the starting/finishing line
                             if (t < time) {
                                 time = t;
                                 ret = i;

@@ -1,6 +1,5 @@
 package de.streblow.paperracing;
 
-import android.app.ActionBar;
 import android.app.Dialog;
 import android.app.DialogFragment;
 import android.graphics.Point;
@@ -11,13 +10,13 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
-import android.view.WindowManager;
+import android.widget.ImageButton;
 
 /**
  * Created by streblow on 11.12.2017.
  */
 
-public class TableDialogFragment extends DialogFragment {
+public class TableDialogFragment extends DialogFragment implements View.OnClickListener {
 
     public String header;
     public String data;
@@ -32,6 +31,8 @@ public class TableDialogFragment extends DialogFragment {
         currentplayer = getArguments().getString("currentplayer", "");
         TableView tableView = (TableView)view.findViewById(R.id.cvTableView);
         tableView.updateResources(header, data, currentplayer, 20.0f);
+        ImageButton button = (ImageButton)view.findViewById(R.id.imageButtonClear);
+        button.setOnClickListener(this);
         return view;
     }
 
@@ -59,6 +60,15 @@ public class TableDialogFragment extends DialogFragment {
         window.setLayout(Math.min((int)(size.x * 0.9), (int)(size.y * 0.9)),
                 Math.min((int)(size.x * 0.9), (int)(size.y * 0.9)));
         window.setGravity(Gravity.CENTER);
+    }
+
+    @Override
+    public void onClick(View v) {
+        ((MainActivity)getActivity()).clearRaceStats();
+        data = "";
+        TableView view = (TableView)getView().findViewById(R.id.cvTableView);
+        view.updateResources(header, data, currentplayer, 20.0f);
+        view.invalidate();
     }
 
 }

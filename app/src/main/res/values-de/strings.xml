@@ -6,7 +6,7 @@
     <string name="settings_activity_title">PaperRacing - Einstellungen</string>
     <string name="action_quickrace">Schnelles Rennen</string>
     <string name="action_race">Rennen</string>
-    <string name="action_racestats_clear">Rennstatistiken löschen</string>
+    <string name="action_racestats">Rennstatistiken</string>
     <string name="action_season">Meisterschaft</string>
     <string name="action_settings">Einstellungen</string>
     <string name="action_help">Hilfe</string>
@@ -22,12 +22,14 @@
     <string name="name_player">Spieler</string>
     <string name="name_computer">Computer</string>
     <string name="quickrace_title">Schnelles Rennen</string>
-    <string name="quickrace_player_on">spielt</string>
+    <string name="quickrace_new_title">Neues Schnelles Rennen</string>
+    <string name="quickrace_player_on">aktiv</string>
     <string name="quickrace_player_type_computer">Computer</string>
     <string name="quickrace_player_type_human">Mensch</string>
     <string name="quickrace_player_name">Spielername</string>
     <string name="race_title">Rennen</string>
-    <string name="season_title">Meisterschaft</string>
+    <string name="race_new_title">Neues Rennen</string>
+    <string name="season_title">Neue Meisterschaft</string>
     <string name="button_description">Los</string>
     <string name="racetable_header_player">Spieler</string>
     <string name="racetable_header_races">Rennen</string>

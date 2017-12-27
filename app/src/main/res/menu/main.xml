@@ -11,9 +11,9 @@
         android:title="@string/action_race"
         android:icon="@drawable/newgame"/>
     <item
-        android:id="@+id/action_racestats_clear"
+        android:id="@+id/action_racestats"
         android:orderInCategory="110"
-        android:title="@string/action_racestats_clear"
+        android:title="@string/action_racestats"
         />
     <item
         android:id="@+id/action_season"

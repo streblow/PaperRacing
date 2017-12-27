@@ -69,7 +69,7 @@ public class MainActivity extends AppCompatActivity {
                 fm = getFragmentManager();
                 NewRaceDialogFragment quickrace = new NewRaceDialogFragment();
                 arguments = new Bundle();
-                arguments.putString("title", getString(R.string.quickrace_title));
+                arguments.putString("title", getString(R.string.quickrace_new_title));
                 quickrace.setArguments(arguments);
                 quickrace.listener = new NewRaceDialogFragment.OnDialogFragmentDismissedListener() {
                     @Override
@@ -92,6 +92,8 @@ public class MainActivity extends AppCompatActivity {
                                 findViewById(R.id.imageButtonUndo).setVisibility(View.VISIBLE);
                                 mainView.firstRun = false;
                                 mainView.buttonHidden = false;
+                                resetButtons();
+                                waitHandler.removeCallbacksAndMessages(null);
                                 waitHandler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -102,13 +104,12 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 quickrace.show(fm, "Quickrace");
-                resetButtons();
                 return true;
             case R.id.action_race:
                 fm = getFragmentManager();
                 NewRaceDialogFragment race = new NewRaceDialogFragment();
                 arguments = new Bundle();
-                arguments.putString("title", getString(R.string.race_title));
+                arguments.putString("title", getString(R.string.race_new_title));
                 race.setArguments(arguments);
                 race.listener = new NewRaceDialogFragment.OnDialogFragmentDismissedListener() {
                     @Override
@@ -131,6 +132,8 @@ public class MainActivity extends AppCompatActivity {
                                 findViewById(R.id.imageButtonUndo).setVisibility(View.INVISIBLE);
                                 mainView.firstRun = false;
                                 mainView.buttonHidden = false;
+                                resetButtons();
+                                waitHandler.removeCallbacksAndMessages(null);
                                 waitHandler.postDelayed(new Runnable() {
                                     @Override
                                     public void run() {
@@ -141,17 +144,13 @@ public class MainActivity extends AppCompatActivity {
                     }
                 };
                 race.show(fm, "Race");
-                resetButtons();
                 return true;
-            case R.id.action_racestats_clear:
-                clearRaceStats();
+            case R.id.action_racestats:
+                showRaceStats();
                 return true;
             case R.id.action_season:
-                resetButtons();
                 return true;
             case R.id.action_settings:
-                // test TableView
-                showRaceStats();
                 return true;
             case R.id.action_help:
                 HelpDialog help = new HelpDialog(this);
@@ -322,34 +321,42 @@ public class MainActivity extends AppCompatActivity {
             return;
         if (mainView.game.getplayercount() < 2)
             return;
-        // update all human players race count
+        Boolean computerRace = true;
         for (int i = 0; i < mainView.game.getplayercount(); i++)
             if (mainView.game.getplayer(i).type() == Player.HUM) {
-                String name = mainView.game.getplayer(i).getname();
-                Boolean exists = false;
-                int index = -1;
-                for (int j = 0; j < raceStats.size(); j++)
-                    if (raceStats.get(j).playerName.equalsIgnoreCase(name)) {
-                        exists = true;
-                        index = j;
+                computerRace = false;
+                break;
+            }
+        if (!computerRace) {
+            // update all human players race count
+            for (int i = 0; i < mainView.game.getplayercount(); i++)
+                if (mainView.game.getplayer(i).type() == Player.HUM) {
+                    String name = mainView.game.getplayer(i).getname();
+                    Boolean exists = false;
+                    int index = -1;
+                    for (int j = 0; j < raceStats.size(); j++)
+                        if (raceStats.get(j).playerName.equalsIgnoreCase(name)) {
+                            exists = true;
+                            index = j;
+                            break;
+                        }
+                    if (exists)
+                        raceStats.get(index).races++;
+                    else
+                        raceStats.add(new RaceStatsEntry(name, 1, 0));
+                }
+            // update winners win count if is human
+            if (mainView.game.getplayer(mainView.game.winner).type() == Player.HUM) {
+                String name = mainView.game.getplayer(mainView.game.winner).getname();
+                for (int i = 0; i < raceStats.size(); i++)
+                    if (raceStats.get(i).playerName.equalsIgnoreCase(name)) {
+                        raceStats.get(i).won++;
                         break;
                     }
-                if (exists)
-                    raceStats.get(index).races++;
-                else
-                    raceStats.add(new RaceStatsEntry(name, 1, 0));
             }
-        // update winners win count if is human
-        if (mainView.game.getplayer(mainView.game.winner).type() == Player.HUM) {
-            String name = mainView.game.getplayer(mainView.game.winner).getname();
-            for (int i = 0; i < raceStats.size(); i++)
-                if (raceStats.get(i).playerName.equalsIgnoreCase(name)) {
-                    raceStats.get(i).won++;
-                    break;
-                }
+            // show race stats
+            showRaceStats();
         }
-        // show race stats
-        showRaceStats();
     }
 
     public void showRaceStats() {
