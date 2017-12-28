@@ -14,11 +14,26 @@ Wenn die neue Position außerhalb der Strecke liegt (rot markiert), wird Ihre ak
 Sehen Sie, was noch möglich ist:<br>
 <img src="help2"><br>
 Sie können die Strecke verlassen (abkürzen), wenn zumindest der Zielpunkt auf der Strecke liegt, selbst wenn die direkte Verbindung außerhalb der Strecke liegt.<br>
-Die grünen Kreise in der untersten Linie sind zulässige Zielpunkte.<br>
+So sind alle grünen Kreise in der untersten Linie zulässige Zielpunkte.<br>
 <br>
-Spielregeln für PaperRacing<br>
-Das Verlassen der Strecke ist nicht erlaubt. Wenn die Strecke nach einem Zug verlassen würde, wird die aktuelle Position beibehalten und die Geschwindigkeit wird auf Null gesetzt.<br>
-Nur der Start- und Endpunkt eines Zuges muss auf der Strecke sein, Abkürzen ist so möglich.<br>
-Wenn zwei Spieler in der selben Runde über die Ziellinie fahren, gewinnt der, der den kürzesten Anteil der Zugstrecke vor dem Ziel hat.<br>
-<li>Wenn zwei Spieler gleichzeitig über die Ziellinie fahren, gewinnt der Spieler, der zuerst gezogen hat.<br>
-
+Spielregeln für PaperRacing:<br>
+&#8226; Die Spieler beginnen auf der Start/Ziellinie, wo sie automatisch von links nach rechts positioniert werden. Reicht die Länge nicht aus, wird erneut von links nach rechts positioniert.<br>
+&#8226; Es wird der Reihe nach gezogen. Es darf auch auf Zielpunkte gezogen werden, die durch andere Spieler besetzt sind.<br>
+&#8226; Das Verlassen der Strecke ist nicht erlaubt. Wenn die Strecke nach einem Zug verlassen würde, wird die aktuelle Position beibehalten und die Geschwindigkeit wird auf Null gesetzt.<br>
+&#8226; Nur der Start- und Endpunkt eines Zuges muss auf der Strecke sein, Abkürzen ist so möglich.<br>
+&#8226; Erst wenn alle Spieler in einer Runde gezogen haben, wird überprüft, wer gewonnen hat.<br>
+&#8226; Wenn zwei Spieler in der selben Runde über die Ziellinie fahren, gewinnt der, der den kürzesten Anteil der Zugstrecke vor dem Ziel hatte.<br>
+&#8226; Wenn zwei Spieler gleichzeitig über die Ziellinie fahren, gewinnt der Spieler, der zuerst gezogen hat.<br>
+<br>
+Die Anzeige der teilnehmenden Spieler:<br>
+In der linken oberen Ecke werden alle teilnehmenden Spieler aufgelistet. Es erscheint der Name gefolgt von der Rekursionstiefe in Klammern. Diese gibt an, wie viele Züge die Computerspieler vorausberechnen. Bei menschlichen Spielern steht dort 0.<br>
+Weiterhin wird die Zahl der ausgeführte Züge angezeigt, so dass ersichtlich ist, wer am Zug ist.<br>
+<br>
+Das Menü:<br>
+&#8226; Schnelles Rennen: Starten Sie ein Rennen mit bis zu 8 Spielern. Es gibt keine Bestenliste, Sie können Ihre Züge zurücknehmen. Üben Sie einfach.<br>
+&#8226; Rennen: Starten Sie ein Rennen mit bis zu 8 Spielern, bei dem alle menschlichen Spieler in der Bestenliste gespeichert werden (Rennstatistiken).<br>
+&#8226; Rennstatistiken: Schauen Sie sich die Bestenliste aller gespeicherten Rennen an. Sie können die Liste löschen.<br>
+&#8226; Meisterschaft: Noch nicht fertig.<br>
+&#8226; Einstellungen: Noch nicht fertig.<br>
+&#8226; Hilfe: Wenn Sie Hilfe benötigen, wählen Sie Hilfe (diese Abhandlung).<br>
+&#8226; Über: Über die App und ihren Autoren.<br>

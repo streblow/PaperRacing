@@ -7,18 +7,33 @@ You can go to en.wikipedia.org/wiki/Racetrack_%28game%29 to get an idea of how i
 <br>
 Here you see a normal move situation:<br>
 <img src="help1"><br>
-The current position is extended to the point the last moving vector would point to (the green circle in the middle of all drawn circles, obtained by extending the line from red filled circle, the last position, along the red car).<br>
+The current position is extended to the point the last moving vector would point to (the green circle in the middle of all drawn circles, obtained by extending the line from last red filled circle, the last position, along the red car).<br>
 The new position can be any of the neighboring points including the central point.<br>
 If the new position is out of the track (marked red) your current position will be kept and your speed will be set to zero.<br>
 <br>
 Lets see what is possible too:<br>
 <img src="help2"><br>
 You can leave the track (shorten) if at least the target point is on the track, even if the direct connection leaves it.<br>
-All positions of the bottom line are legal target points.<br>
+So all positions of the bottom line are legal target points.<br>
 <br>
 Rules for playing PaperRacing<br>
-Leaving the track is not permitted. If track would be left after a move, current position is held and speed is set to Zero.<br>
-Only start and end points of a move must be on the track, so shortening is possible.<br>
-If two players finish in the same round, the one with the shortest portion of being before the finishing line is the winner.<br>
-If two player finish with the same portion the player who moved first is the winner.<br>
-
+&#8226; All players start at the start/finish line, where they are automaticly put from left to right. If the line is not long enough the remaining players are put again from left to right.<br>
+&#8226; Players move consecutively from first to last player. A move can also be made to a grid point that has already been occupied by another car.<br>
+&#8226; Leaving the track is not permitted. If track would be left after a move, current position is held and speed is set to zero.<br>
+&#8226; Only start and end points of a move must be on the track, so shortening is possible.<br>
+&#8226; The check for a winner is only done after all players have moved in the same round.<br>
+&#8226; If two players finish in the same round, the one with the shortest portion of being before the finishing line is the winner.<br>
+&#8226; If two player finish with the same portion the player who moved first is the winner.<br>
+<br>
+Display of players:<br>
+In the upper left corner all active players are listed. You see the name of the player followed by the recursion depth in parantheses. The recursion depth is the number of moves the computer players calculate in advance. For human players this is always 0.<br>
+Additional the number of moves is displayed. So you can see who is up to move.<br>
+<br>
+The menu:<br>
+&#8226; Quickrace: Start a race of up to 8 players. No highscore is saved, you can undo your moves. Just practice racing.<br>
+&#8226; Race: Start a race of up to 8 players, where all human players are recorded in a highscore list (Race Stats).<br>
+&#8226; Race Stats: View the highscore list of all recorded races. You can clear the list.<br>
+&#8226; Season: Not ready yet.<br>
+&#8226; Settings: Not ready yet.<br>
+&#8226; Help: If you need help, choose help (this discourse).<br>
+&#8226; About: About the app and its author.<br>
