@@ -655,6 +655,8 @@ public class MainActivity extends AppCompatActivity {
 
         if (raceStats == null)
             raceStats = new ArrayList<>();
+        else
+            raceStats.clear();
         int length = savedInstanceState.getInt("racelistlength", 0);
         for (int i = 0; i < length; i++) {
             String entryStr = savedInstanceState.getString("racelistentry" + i);
@@ -710,6 +712,8 @@ public class MainActivity extends AppCompatActivity {
             dis = new DataInputStream(new FileInputStream(file));
             if (raceStats == null)
                 raceStats = new ArrayList<>();
+            else
+                raceStats.clear();
             int length = dis.readInt();
             for (int i = 0; i < length; i++) {
                 String entryStr = dis.readUTF();

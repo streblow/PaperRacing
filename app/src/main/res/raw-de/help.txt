@@ -1,9 +1,11 @@
 Dies ist eine Kurzanleitung für PaperRacing.<br>
 <br>
-Die Kurzanleitung ist noch nicht fertig.<br>
+Die Kurzanleitung ist noch nicht ganz fertig.<br>
 <br>
 PaperRacing ist ein Spiel, das auch als Racetrack oder Vektorrennen bekannt ist.<br>
 Sie können sich bei de.wikipedia.org/wiki/Racetrack einen Eindruck verschaffen, wie das Spiel funktioniert.<br>
+<br>
+PaperRacing arbeitet nicht wie vergleichbare Apps mit fest vorgegebenen Strecken. PaperRacing generiert für jedes Rennen eine neue Strecke, die einen Rundkurs bildet. Dieser ist in entgegengesetztem Uhrzeigersinn zu absolvieren. Die Start/Ziellinie befindet sich immer auf der 3-Uhr-Position.<br>
 <br>
 Hier sehen Sie eine normale Situation:<br>
 <img src="help1"><br>

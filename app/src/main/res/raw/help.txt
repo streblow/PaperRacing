@@ -5,6 +5,8 @@ The short help is not complete yet.<br>
 PaperRacing is a game also known as racetrack or vectorrace.<br>
 You can go to en.wikipedia.org/wiki/Racetrack_%28game%29 to get an idea of how it works.<br>
 <br>
+PaperRacing doesn't contain predesigned tracks like similar apps. PaperRacing generates a new track for each race (building a circuit). This must be completed counter-clockwise. The start/finishing line is always at the 3-o'clock-position.<br>
+<br>
 Here you see a normal move situation:<br>
 <img src="help1"><br>
 The current position is extended to the point the last moving vector would point to (the green circle in the middle of all drawn circles, obtained by extending the line from last red filled circle, the last position, along the red car).<br>
