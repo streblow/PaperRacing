@@ -1,6 +1,6 @@
 <h2>PaperRacing</h2>
-<b>Version 1.0</b><br>
-&#169; 2018-08-26 Lars Streblow<br>
+<b>Version 1.1 (Build 4)</b><br>
+&#169; 2018-10-11 Lars Streblow<br>
 <br>
 streblow.gmxhome.de<br>
 lars.streblow@gmx.de

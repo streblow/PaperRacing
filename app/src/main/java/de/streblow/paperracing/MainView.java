@@ -80,6 +80,7 @@ public class MainView extends View {
     }
 
     public void init(Context context, int[] types, String[] names) {
+        // here some constant properties which should be customizable in settings
         gridSize = 40;
         sizeWidth = 20;
         sizeHeight = 20;
