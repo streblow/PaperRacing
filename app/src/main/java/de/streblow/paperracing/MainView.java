@@ -92,8 +92,8 @@ public class MainView extends View {
 
         mAppContext = context;
 
-        paperColor = Color.rgb(255,245,220);
-        gridColor = Color.rgb(149,194,229);
+        paperColor = Color.rgb(255,250,245);
+        gridColor = Color.rgb(0xa0,0xa0,0xf0);
         titleColor = Color.BLUE;
 
         animationDuration = 500;
@@ -111,7 +111,7 @@ public class MainView extends View {
         translateY = 0.0f;
         previousTranslateX = 0.0f;
         previousTranslateY = 0.0f;
-        mScaleFactor = 1.0f;
+        mScaleFactor = 0.0f;
     }
 
     public void updateResources() {
@@ -267,9 +267,16 @@ public class MainView extends View {
     public void onDraw(Canvas canvas) {
         super.onDraw(canvas);
         if (mScaleFactor == 0.0f) {
-            float minXScale = (float)getWidth() / (float)bm_w;
-            float minYScale = (float)getHeight() / (float)bm_h;
+            int size = Math.max(getWidth(), getHeight());
+            float minXScale = (float)size / (float)bm_w;
+            float minYScale = (float)size / (float)bm_h;
             mScaleFactor = Math.max(Math.min(minXScale, minYScale), Math.min(mScaleFactor, maxZoomFactor));
+            translateX = getWidth() - size;
+            translateY = getHeight() - size;
+            startX = translateX;
+            startY = translateY;
+            previousTranslateX = translateX;
+            previousTranslateY = translateY;
         }
         /* canvas-drawing code */
         canvas.save();
@@ -367,14 +374,14 @@ public class MainView extends View {
             paint.setTextSize(Math.max(10.0f, paint.getTextSize() - 10.0f));
             paint.setStrokeWidth(6.0f);
             String text3 = getResources().getString(R.string.firstrun_3);
-            paint.getTextBounds(text3, 0, text3.length(), rect);
-            while (rect.width() > getWidth() && paint.getTextSize() > 10.0f) {
-                paint.setTextSize(Math.max(10.0f, paint.getTextSize() - 2.0f));
-                paint.getTextBounds(text3, 0, text3.length(), rect);
-            }
-            y += rect.height();
-            paint.getTextBounds(text3, 0, text3.length(), rect);
-            canvas.drawText(text3, (getWidth() - rect.width()) / 2, y + rect.height(), paint);
+//            paint.getTextBounds(text3, 0, text3.length(), rect);
+//            while (rect.width() > getWidth() && paint.getTextSize() > 10.0f) {
+//                paint.setTextSize(Math.max(10.0f, paint.getTextSize() - 2.0f));
+//                paint.getTextBounds(text3, 0, text3.length(), rect);
+//            }
+//            y += rect.height();
+//            paint.getTextBounds(text3, 0, text3.length(), rect);
+//            canvas.drawText(text3, (getWidth() - rect.width()) / 2, y + rect.height(), paint);
         }
         if (game.finished()) {
             if (!buttonHidden) {
@@ -496,8 +503,9 @@ public class MainView extends View {
         @Override
         public boolean onScale(ScaleGestureDetector detector) {
             mScaleFactor *= detector.getScaleFactor();
-            float minXScale = (float)getWidth() / (float)bm_w;
-            float minYScale = (float)getHeight() / (float)bm_h;
+            int size = Math.max(getWidth(), getHeight());
+            float minXScale = (float)size / (float)bm_w;
+            float minYScale = (float)size / (float)bm_h;
             mScaleFactor = Math.max(Math.min(minXScale, minYScale), Math.min(mScaleFactor, maxZoomFactor));
             invalidate();
             return true;

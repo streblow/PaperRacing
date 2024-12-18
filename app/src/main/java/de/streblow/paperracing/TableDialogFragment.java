@@ -1,9 +1,9 @@
 package de.streblow.paperracing;
 
 import android.app.Dialog;
-import android.app.DialogFragment;
 import android.graphics.Point;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.Display;
 import android.view.Gravity;
 import android.view.LayoutInflater;

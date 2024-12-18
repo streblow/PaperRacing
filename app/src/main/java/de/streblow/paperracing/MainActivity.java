@@ -1,8 +1,8 @@
 package de.streblow.paperracing;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.os.Handler;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -10,6 +10,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageButton;
+import android.widget.TextView;
 
 import java.io.DataInputStream;
 import java.io.DataOutputStream;
@@ -66,7 +67,7 @@ public class MainActivity extends AppCompatActivity {
         switch (item.getItemId())
         {
             case R.id.action_quickrace:
-                fm = getFragmentManager();
+                fm = getSupportFragmentManager();
                 NewRaceDialogFragment quickrace = new NewRaceDialogFragment();
                 arguments = new Bundle();
                 arguments.putString("title", getString(R.string.quickrace_new_title));
@@ -106,7 +107,7 @@ public class MainActivity extends AppCompatActivity {
                 quickrace.show(fm, "Quickrace");
                 return true;
             case R.id.action_race:
-                fm = getFragmentManager();
+                fm = getSupportFragmentManager();
                 NewRaceDialogFragment race = new NewRaceDialogFragment();
                 arguments = new Bundle();
                 arguments.putString("title", getString(R.string.race_new_title));
@@ -362,7 +363,7 @@ public class MainActivity extends AppCompatActivity {
     public void showRaceStats() {
         FragmentManager fm = null;
         Bundle arguments = null;
-        fm = getFragmentManager();
+        fm = getSupportFragmentManager();
         TableDialogFragment raceTable = new TableDialogFragment();
         arguments = new Bundle();
         arguments.putString("header", getString(R.string.racetable_header_player) + ";" +

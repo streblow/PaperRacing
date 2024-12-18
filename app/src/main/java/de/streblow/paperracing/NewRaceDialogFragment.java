@@ -1,11 +1,11 @@
 package de.streblow.paperracing;
 
 import android.app.Activity;
-import android.app.DialogFragment;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Build;
 import android.os.Bundle;
+import android.support.v4.app.DialogFragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +13,7 @@ import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +37,8 @@ public class NewRaceDialogFragment extends DialogFragment {
         View view = inflater.inflate(R.layout.dialogfragment_newrace, container, false);
         setRetainInstance(true);
         title = getArguments().getString("title", "");
+        TextView tvTitle = (TextView)view.findViewById(R.id.new_game_title);
+        tvTitle.setText(title);
         getDialog().setTitle(title);
         arr_type = new String[2];
         arr_type[0] = getString(R.string.quickrace_player_type_computer);
